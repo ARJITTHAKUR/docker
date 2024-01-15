@@ -10,7 +10,8 @@
 # shell and interactivity
 
 1. docker container run -it (start a new container interactivily)
-2. doker container exec -it (run additional command in existing container)
+2. docker container exec -it (run additional command in existing container)
+        i.e : docker container exec -it container_name sh
 
  i.e :  docker container run -it --name proxy nginx bash
 
@@ -51,4 +52,10 @@ that is why when we start an alpine image with
 (now if try to ping from another_nginx(our newly created container running on network my_app_net) to our previously created container which is also running on my_app_net)
 (we see that they are able to communicate with each other since they are on same network)
 2. docker container exec -it another_nginx ping new_nginx
+
+## create a new network instead of manually creating link between containers
+
+### important points for DNS
+1. Containers shouldn't rely on IP's for inter-communication
+2. DNS for friendly names is built-in if you use custom networks
 
