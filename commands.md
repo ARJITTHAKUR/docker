@@ -28,3 +28,27 @@ that is why when we start an alpine image with
     - docker container run -it alpine bash (this fails as bash is not present in the alpine image)
     but,
     - docker container run -it alpine sh (this runs, because sh is present in bash image)
+
+
+## Virtual networks
+ (default driver is bridge)
+1. docker inspect bridge
+2. docker network ls
+3. docker network create --driver
+4. docker network connect id1 id2
+5. docker network disconnect id1 id2
+
+### important to remember
+1. id1 network was created using docker network create and id2 was already running
+
+
+# DNS
+
+(here we are setting creating and running a new container on a preivously created network my_app_net that we created using docker create network create "network_name")
+
+1. docker container run -d --name another_nginx --network my_app_net nginx 
+
+(now if try to ping from another_nginx(our newly created container running on network my_app_net) to our previously created container which is also running on my_app_net)
+(we see that they are able to communicate with each other since they are on same network)
+2. docker container exec -it another_nginx ping new_nginx
+
